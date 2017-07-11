@@ -26,6 +26,8 @@ def main():
             for line in api.GetStreamFilter(track=HASHTAGS):
                 f.write(json.dumps(line))
                 f.write('\n')
+                print(line['user']['screen_name'] + ': ' + line['text'])
+
     except KeyboardInterrupt:
         print('Stopped on ' + time.strftime('%c'))
 
