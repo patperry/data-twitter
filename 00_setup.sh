@@ -40,6 +40,9 @@ export PYTHONPATH
 . ./access.sh
 EOF
 
+# tell git to ignore changes to access.sh
+git update-index --assume-unchanged access.sh
+
 # switch to the virtual environment
 source "${VENV}/bin/activate"
 
