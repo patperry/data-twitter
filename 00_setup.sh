@@ -29,7 +29,7 @@ fi
 
 # set up the virtual environment
 VENV=venv
-virtualenv --no-site-packages --distribute --python=python3.6 "${VENV}"
+virtualenv --no-site-packages --distribute --python=python3 "${VENV}"
 
 # set the PYTHONPATH variable on activation
 cat << EOF >> "${VENV}/bin/activate"
