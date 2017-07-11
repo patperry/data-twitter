@@ -6,6 +6,7 @@
 
 import os
 import json
+import time
 
 from twitter import Api
 
@@ -19,10 +20,14 @@ HASHTAGS = ['#rstats']
 api = Api(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
 def main():
-    with open('output.txt', 'a') as f:
-        for line in api.GetStreamFilter(track=HASHTAGS):
-            f.write(json.dumps(line))
-            f.write('\n')
+    print('Started on ' + time.strftime('%c'))
+    try:
+        with open('rstats-tweets.json', 'a') as f:
+            for line in api.GetStreamFilter(track=HASHTAGS):
+                f.write(json.dumps(line))
+                f.write('\n')
+    except KeyboardInterrupt:
+        print('Stopped on ' + time.strftime('%c'))
 
 if __name__ == '__main__':
     main()
