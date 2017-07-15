@@ -17,12 +17,13 @@ ACCESS_TOKEN_SECRET = os.getenv("TWITTER_ACCESS_TOKEN_SECRET", None)
 
 HASHTAGS = ['#rstats']
 
-api = Api(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+api = Api(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET,
+          tweet_mode='extended')
 
 def main():
     print('Started on ' + time.strftime('%c'))
     try:
-        with open('rstats-tweets.json', 'a') as f:
+        with open('rstats-tweets-stream.json', 'a') as f:
             for line in api.GetStreamFilter(track=HASHTAGS):
                 f.write(json.dumps(line))
                 f.write('\n')
